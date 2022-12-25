@@ -14,36 +14,13 @@ public class Main {
         Queue<Integer> q = new LinkedList<Integer>();
         PriorityQueue<pii<Integer, Integer>> pq = new PriorityQueue<>();
 
+        int T = fs.nextInt();
+        for (int tc = 0; tc < T; tc++) {
+            int n = fs.nextInt();
+            int[] arr = fs.readArray(n);
+        }
+
     }
-
-    private static void howToUse(FastScanner fs, PriorityQueue<pii<Integer, Integer>> pq) {
-        // fs.next();
-
-        var min = min(List.of(11, 22, 33));
-        System.out.println(min);
-
-        var descList = Arrays.asList(33, 22, 11);
-        sort(descList);
-        System.out.println(descList);
-
-        var ascList = Arrays.asList(11, 22, 33);
-        rsort(ascList);
-        System.out.println(ascList);
-        System.out.println(max(ascList));
-
-        System.out.println(lowerBound(descList, 15));
-
-        pq.add(new pii<>(1, 2));
-        pq.add(new pii<>(3, 4));
-
-        System.out.println(pq.poll());
-
-        System.out.println(gcd(2 * 2 * 3 * 5, 3 * 5));
-        System.out.println(gcd(2 * 3 * 5 * 7 * 11L, 2 * 5 * 11L));
-
-        System.out.println(abs(-11) + " " + abs(-1.123) + " " + abs(-12L));
-    }
-
 
     /***********************************************************************/
     static <T extends Number> T gcd(T a, T b) {
