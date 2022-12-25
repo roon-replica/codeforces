@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         FastScanner fs = new FastScanner();
-        Map<Integer, Integer> mp = new TreeMap<>();
+        Map<Integer, Integer> map = new TreeMap<>();
         Set<Integer> set = new TreeSet<Integer>();
         Queue<Integer> q = new LinkedList<Integer>();
         PriorityQueue<pii<Integer, Integer>> pq = new PriorityQueue<>();
@@ -64,8 +64,9 @@ public class Main {
         a[idx2] = tmp;
     }
 
-    static <T extends Comparable<T>> void sort(T[] a) {
-        List<T> list = new ArrayList<>(Arrays.asList(a));
+    static void sort(int[] a) {
+        List<Integer> list = new ArrayList<>();
+        for (var i : a) list.add(i);
         Collections.sort(list);
         for (int i = 0; i < a.length; i++) a[i] = list.get(i);
     }
@@ -74,9 +75,10 @@ public class Main {
         Collections.sort(a);
     }
 
-    static <T extends Comparable<T>> void rsort(T[] a) {
-        List<T> list = new ArrayList<>(Arrays.asList(a));
-        list.sort(Collections.reverseOrder());
+    static void rsort(int[] a) {
+        List<Integer> list = new ArrayList<>();
+        for (var i : a) list.add(i);
+        Collections.sort(list, Collections.reverseOrder());
         for (int i = 0; i < a.length; i++) a[i] = list.get(i);
     }
 
@@ -84,11 +86,21 @@ public class Main {
         a.sort(Collections.reverseOrder());
     }
 
-    static <T extends Comparable<T>> int lowerBound(T[] a, T x) {
+    static int lowerBound(int[] a, int x) {
         int s = 0, e = a.length;
         while (s < e) {
             int mid = (s + e) / 2;
-            if (a[mid].compareTo(x) >= 0) e = mid;
+            if (a[mid] >= x) e = mid;
+            else s = mid + 1;
+        }
+        return e;
+    }
+
+    static int lowerBound(long[] a, long x) {
+        int s = 0, e = a.length;
+        while (s < e) {
+            int mid = (s + e) / 2;
+            if (a[mid] >= x) e = mid;
             else s = mid + 1;
         }
         return e;
