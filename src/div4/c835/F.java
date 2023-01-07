@@ -20,6 +20,7 @@ public class F {
 
             int[] a = fs.readArray(n);
 
+            //try -1
             // 최소의 자원을 투입해서 원하는 값을 얻어야 하는
             // binary search?
             // bin searching k, and simulate each cases
@@ -36,43 +37,100 @@ public class F {
             // 아 왜 틀리지... 이런 식은 맞을텐데.......
             // 모르겠다...
 
+//            rsort(a);
+//
+//            final int MAX = 200_000+1;
+//
+//            int maxCooltime = -1;
+//            for (int mink = 0, maxk = MAX; mink <= maxk; ) {
+//                int mid = (mink + maxk) / 2;
+//
+//                long sum = sum(a, days, mid);
+//
+//                if (sum >= minimumCoin) {
+//                    mink = mid + 1;
+//                    maxCooltime = Math.max(maxCooltime, mid);
+//                } else {
+//                    maxk = mid - 1;
+//                }
+//            }
+//
+//            if (maxCooltime == -1) System.out.println("Impossible");
+//            else if (maxCooltime == MAX) System.out.println("Infinity");
+//            else System.out.println(maxCooltime);
+
+
+            // try -2
+            // binary search는 맞을거고
+            // impossible -> k=0이어도 안될때
+            // infinity -> a[i] 중에 목표값 이상이 있을 때
+            // 관점...
+            // 어케 고를지
+            // 다다익선
+            // 정렬
+            // a: n개
+            // n > k -> 큰 a들만 고를 수 있음
+            // n =< k -> k-n 일은 허비하게 됨
+            // 이렇게 시뮬하면 맞지 않나?
+            //mink=0, maxk = days?
 
             rsort(a);
+            long[] psum = psum(a);
+            long answer = -1;
 
-            final int MAX = 200_000+1;
+            for(int mink=0, maxk = days; mink <= maxk; ){
+                int midk = (mink + maxk) / 2;
 
-            int maxCooltime = -1;
-            for (int mink = 0, maxk = MAX; mink <= maxk; ) {
-                int mid = (mink + maxk) / 2;
-
-                long sum = sum(a, days, mid);
-
-                if (sum >= minimumCoin) {
-                    mink = mid + 1;
-                    maxCooltime = Math.max(maxCooltime, mid);
-                } else {
-                    maxk = mid - 1;
+                if(sum(a,psum,days,midk) >= minimumCoin){
+                    answer = Math.max(answer, midk);
+                    mink = midk+1;
+                }else{
+                    maxk = midk-1;
                 }
             }
 
-            if (maxCooltime == -1) System.out.println("Impossible");
-            else if (maxCooltime == MAX) System.out.println("Infinity");
-            else System.out.println(maxCooltime);
+            if (answer == -1) {
+                System.out.println("Impossible");
+            }else if(answer == days){
+                System.out.println("Infinity");
+            }else{
+                System.out.println(answer);
+            }
+
         }
     }
 
-    private static long sum(int[] a, int days, int cooltime) {
+    private static long[] psum(int[] a){
+        long[] ret = new long[a.length + 1];
+        for(int i=0; i<a.length;i++){
+            ret[i+1] = ret[i] + a[i];
+        }
+
+        return ret;
+    }
+
+    private static long sum(int[] a, long[] psum, int days, int cooltime) {
         long sum = 0;
-        cooltime += 1;
-        int leftDays = days;
+        int n = a.length;
 
-        for (int e : a) {
-            int day = days / cooltime + (days % cooltime != 0 ? 1 : 0);
-            day = Math.min(leftDays, day);
-            sum += (long) e * day;
+        if(n > cooltime){
+            // cooltime: 5, n:10, days:5 -> a[0], a[1], ... ,a[4]
+            // cooltime: 5, n: 10, days: 10 -> (a[0], a[1], a[2], a[3], a[4], a[5]), a[0], a[1], ...
+            // cooltime: 5, n: 10, days: 20 -> (a[0], ... ,a[5]), (a[0], ... ,a[5]), ...
+            // 묶음 단위 : cooltime +1개
+            // 반복: days / (cooltime+1)
+            // 나머지: days % (cooltime+1)
 
-            leftDays -= day;
-            if (leftDays <= 0) break;
+            int repeat = days / (cooltime+1);
+            int remain = days % (cooltime+1);
+            sum = (psum[cooltime+1] * repeat) + psum[remain];
+        }else{
+            // cooltime: 5, days: 10, n:2 -> (a[0], a[1], -, -, -, -), (a[0], a[1], -, -)
+            // cooltime: 10, days:5, n:2 -> (a[0], a[1], -, -, -,...,-)
+            int repeat = days / (cooltime+1);
+            int remain = Math.min(days % (cooltime+1), n);
+
+            sum = (psum[n] * repeat) + psum[remain];
         }
 
         return sum;
