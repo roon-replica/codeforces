@@ -13,7 +13,7 @@ public class SimpleMain {
         int T = fs.nextInt();
         for (int tc = 0; tc < T; tc++) {
             int n = fs.nextInt();
-            int[] arr = fs.readArray(n);
+            int[] a = fs.readArray(n);
         }
     }
 
