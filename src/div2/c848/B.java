@@ -29,7 +29,7 @@ public class B {
             // a[i] 위치 저장
             // calc dist
             // 최적이 답
-은
+
             int[] pos = new int[n + 1];
             for (int i = 0; i < n; i++) {
                 int here = p[i];
