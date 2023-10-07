@@ -1,0 +1,10 @@
+# [{platform}-{problemNumber}] {problem title}
+[BOJ-]
+
+# 생각, 느낀점
+-
+
+
+# 문제 정보
+- 문제 난이도:
+- 웹 페이지:

@@ -1,5 +1,15 @@
 # Try Again Codeforces
 
+### 변동
+- 백준으로 플랫폼 변경
+  - 구현 문제 난이도별로 정복하며 사고력 개선 (23.10.7~)
+    - [ ] 골드 5 ()
+    - [ ] 골드 4 ()
+    - [ ] 골드 3 ()
+    - [ ] 골드 2 ()
+    - [ ] 골드 1 ()
+    - [ ] 플레 5 ()
+
 ### Goals
   - increase creativity
   - improve implementation
