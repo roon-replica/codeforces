@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class VerySimpleMain {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
         int tt = scanner.nextInt();
 
         for (int tc = 0; tc < tt; tc++) {

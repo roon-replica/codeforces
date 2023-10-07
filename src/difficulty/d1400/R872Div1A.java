@@ -1,4 +1,6 @@
-package bolierplates;
+package difficulty.d1400;
+
+// https://codeforces.com/problemset/problem/1824/A
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +10,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
-
-public class SimpleMain {
+// https://codeforces.com/problemset/problem/1824/A
+/* 생각
+- 바로 답이 보이진 않음
+- brute force하면?; 10만;
+ */
+public class R872Div1A {
 
 	public static void main(String[] args) {
 		var fs = new FastScanner();
@@ -17,9 +23,11 @@ public class SimpleMain {
 		int T = fs.nextInt();
 		for (int tc = 0; tc < T; tc++) {
 			int n = fs.nextInt();
+			int m = fs.nextInt();
 			int[] a = fs.readArray(n);
-		}
 
+
+		}
 	}
 
 
@@ -131,4 +139,5 @@ public class SimpleMain {
 			return Long.parseLong(next());
 		}
 	}
+
 }
