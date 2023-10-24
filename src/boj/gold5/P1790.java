@@ -1,6 +1,8 @@
 package boj.gold5;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class P1790 {
@@ -11,61 +13,62 @@ public class P1790 {
 		int n = scanner.nextInt();
 		int k = scanner.nextInt();
 
-		long[] tenPowers = new long[11];
-		tenPowers[0] = 1L;
-		for (int i = 0; i < 10; i++) {
-			tenPowers[i + 1] = tenPowers[i] * 10;
+		long[] power = new long[12];
+		power[0] = 1L;
+		int digit = 1;
+
+		for (long temp = 0; temp < k; ) {
+			power[digit] = power[digit - 1] * 10;
+			temp += (power[digit] - power[digit - 1]) * digit;
+			digit++;
 		}
 
-		long[] acc = new long[11];
-		acc[0] = 0L;
+		digit--;
+//		System.out.println(digit);
 
-		for (int i = 1; i < 10; i++) {
-			var here = 9L * tenPowers[i - 1] * i;
-//			acc[i] += here;
-			acc[i] = acc[i - 1] + here;
-//			System.out.println(acc[i]);
-		}
+		int number = 0;
 
-		int p = 0;
-		while (k > acc[p]) {
-			p++;
-		}
+		for (int d = 1; d < digit; d++) {
+			long addSeq = power[d] - power[d - 1];
+			long addVal = d * addSeq;
 
-		System.out.println(p);
-
-		int beforeP = 0;
-		for (int i = 1; i < 10; i++) {
-			if (acc[i] >= k) {
-				beforeP = i - 1;
+			if (addVal > k) {
 				break;
+			}
+
+			number += addSeq;
+			k -= addVal;
+		}
+
+//		System.out.println(number + " " + k);
+
+		number += k / digit;
+		k %= digit;
+
+//		System.out.println(number + " " + k);
+		int answer = -1;
+
+		if (k > 0) {
+			k -= 1;
+			number += 1;
+			if (number <= n) {
+				List<Integer> numbers = new ArrayList<>();
+				for (int d = 0; d < digit; d++) {
+					numbers.add(number % 10);
+					number /= 10;
+				}
+
+				Collections.reverse(numbers);
+
+				answer = numbers.get(k);
+			}
+		} else {
+			if (number <= n) {
+				answer = number % 10;
 			}
 		}
 
-		long sumBefore = acc[beforeP];
-//		System.out.println(beforeP + " " + sumBefore);
+		System.out.println(answer);
 
-		long mok = (k - sumBefore) / p;
-		long remain = (k - sumBefore) % p;
-
-		System.out.println(mok + " " + remain);
-
-		long lastNum = (tenPowers[p - 1] - 1 + mok + (remain > 0 ? 1 : 0));
-//		System.out.println(lastNum);
-
-		if (lastNum > n) {
-			System.out.println(-1);
-			return;
-		}
-
-		var numbers = new ArrayList<Long>();
-		do {
-			numbers.add(lastNum % 10);
-			lastNum /= 10;
-		} while (lastNum > 0);
-
-//		Collections.reverse(numbers);
-		System.out.println(numbers);
-		System.out.println(numbers.get((int) (p - remain - p * mok)));
 	}
 }
