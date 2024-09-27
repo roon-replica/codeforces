@@ -1,5 +1,5 @@
-# [{platform}-{problemNumber}] {problem title}
-[BOJ-]
+# {problem title}
+
 
 # 생각, 느낀점
 -
