@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p3107;
+package boj.silver1.p3107;
 
 import java.util.Scanner;
 

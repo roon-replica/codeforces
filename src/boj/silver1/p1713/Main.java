@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p1713;
+package boj.silver1.p1713;
 
 import java.util.Scanner;
 import java.util.TreeSet;

@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p24954;
+package boj.silver1.p24954;
 
 import java.util.ArrayList;
 import java.util.List;

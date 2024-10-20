@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p16918;
+package boj.silver1.p16918;
 
 import java.util.ArrayList;
 import java.util.Scanner;
