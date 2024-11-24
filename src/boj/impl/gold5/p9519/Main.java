@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p9519;
+package boj.impl.gold5.p9519;
 
 import java.util.ArrayList;
 import java.util.List;

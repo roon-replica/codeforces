@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p25401;
+package boj.impl.gold5.p25401;
 
 import java.util.HashSet;
 import java.util.Scanner;

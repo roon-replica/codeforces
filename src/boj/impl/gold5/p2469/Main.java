@@ -1,4 +1,4 @@
-package boj.gold5.implementation.p2469;
+package boj.impl.gold5.p2469;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package boj.gold5.tree;
+package boj.tree.gold5;
 
 import java.util.LinkedList;
 import java.util.Scanner;
